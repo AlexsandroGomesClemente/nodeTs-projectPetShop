@@ -5,18 +5,19 @@ import path from 'path'
 import mainRouter from './routes'
 
 
-
-
 dotenv.config()
 
 const app = express()
 
+
+
 app.set("view engine",'mustache')
+
 app.set('views', path.join(__dirname,"views"))
+
 app.engine('mustache', mustache())
 
-
-app.use(express.static(path.join(__dirname,"/public")))
+app.use(express.static(path.join(__dirname,"../public")))
 
 
 //ROTAS
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname,"/public")))
 app.use(mainRouter)
 
 app.use((req, res) => {
-    res.status(404).send('pagina não encontrada')
+    res.render('pages/404')
 }) 
 
 
